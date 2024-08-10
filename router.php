@@ -8,13 +8,23 @@ $router = new \Bramus\Router\Router();
 
 $router->get('/', function() { 
     $database = new Database('localhost','wordpress1','root','');
-    var_dump($database);
+    $conn = $database->getConnection();
+
+    $sql = "select * from wp_users";
+
+    $stmt = $conn->query($sql);
+
+    $results = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+    
     echo json_encode([
-        "message"=>"method get"
+        "message"=>"method get",
+        "results" => $results
     ]);
  });
 
 $router->post('/', function() { 
+    $database = new Database('localhost','wordpress1','root','');
+    var_dump($database);
     $data = json_decode(file_get_contents('php://input'),true);
     echo json_encode([
         "method"=>"post",
