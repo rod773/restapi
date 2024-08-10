@@ -4,7 +4,11 @@
 // Create Router instance
 $router = new \Bramus\Router\Router();
 
+
+
 $router->get('/', function() { 
+    $database = new Database('localhost','wordpress1','root','');
+    var_dump($database);
     echo json_encode([
         "message"=>"method get"
     ]);
