@@ -6,6 +6,8 @@ $router = new \Bramus\Router\Router();
 
 
 
+
+
 $router->get('/', function() { 
     $database = new Database('localhost','wordpress1','root','');
     $conn = $database->getConnection();
